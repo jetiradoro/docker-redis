@@ -12,10 +12,13 @@ services:
       - ${REDIS_DOCKER_PORT}:6379
       - ${REDIS_DOCKER_UI_PORT}:8001
     volumes:
-      - ./data:/data
+      - data/:/data
     networks:
       docker-net:
 
 networks:
   docker-net:
     external: ${DOCKER_NET_EXTERNAL}
+
+volumes:
+  data:
