@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  redis:
+    image: redis/redis-stack:latest
+    container_name: ${REDIS_DOCKER_NAME}
+    env_file:
+      - ./.env
+    environment:
+      - VIRTUAL_HOST=${REDIS_DOCKER_DOMAIN}
+      - VIRTUAL_PORT=8001
+    ports:
+      - ${REDIS_DOCKER_PORT}:6379
+      - ${REDIS_DOCKER_UI_PORT}:8001
+    volumes:
+      - ./data:/data
+    networks:
+      docker-net:
+
+networks:
+  docker-net:
+    external: ${DOCKER_NET_EXTERNAL}
