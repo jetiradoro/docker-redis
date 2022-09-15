@@ -3,6 +3,7 @@ services:
   redis:
     image: redis/redis-stack:latest
     container_name: ${REDIS_DOCKER_NAME}
+    restart: unless-stopped
     env_file:
       - ./.env
     environment:
